@@ -1,4 +1,13 @@
-drop table IF EXISTS userEntry;
+drop table IF EXISTS accounts, userEntry;
+
+
+CREATE TABLE accounts(
+	username varchar(50) primary key,
+	password varchar(50),
+	firstName varchar(50),
+	lastName varchar(50)
+);
+
 
 CREATE TABLE userEntry(
 	entryID int not null primary key AUTO_INCREMENT,
@@ -14,6 +23,7 @@ CREATE TABLE userEntry(
 	fastestAvePace double precision,
 	runLongDist double precision,
 	runLongDurat double precision,
-	dateMade timestamp default current_timestamp
-
+	dateMade timestamp default current_timestamp,
+	FOREIGN KEY (username) REFERENCES accounts(username)
 );
+
