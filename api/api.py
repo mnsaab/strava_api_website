@@ -10,11 +10,12 @@ app = Blueprint('api', __name__, template_folder='templates')
 @app.route('/', methods=['GET'])
 def homeApi():
 	if 'username' not in session:
-		return render_template("login.html")
+		return redirect(url_for("api.loginApi"))
 
 	else:
 		return "displaying data from database is done here. Calling strava api is done through javascript in html file"		
 
+		# return render_template("base.html")		
 
 
 
