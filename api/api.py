@@ -5,8 +5,25 @@ import re
 import hashlib
 import uuid
 
-api = Blueprint('api', __name__, template_folder='templates')
+app = Blueprint('api', __name__, template_folder='templates')
 
-@api.route('/home', methods=['POST', 'GET'])
+@app.route('/', methods=['GET'])
 def homeApi():
-	print("hello")
+	if 'username' not in session:
+		return render_template("login.html")
+
+	else:
+		return "displaying data from database is done here. Calling strava api is done through javascript in html file"		
+
+
+
+
+@app.route('/login', methods=['POST', 'GET'])
+def loginApi():
+	return "login page here"
+
+
+
+@app.route('/create-account', methods=['POST', 'GET'])
+def createApi():
+	return render_template("createAccount.html")

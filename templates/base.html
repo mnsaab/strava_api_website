@@ -11,6 +11,7 @@
 
 
 <body>
+{% block content %}
 		
 	<div class="header">
 		<div class="header-title">
@@ -20,10 +21,20 @@
 
 
 	<div class="main-container">
+
+		<p>Click here to gather data from your Strava profile for the last 3 months!</p>
+		<button class="pure-button">Gather Strava Data</button>
+
+		<br><br>
+
+		<div class="resultList">
+			
+		</div>
 		
 
 	</div>
 
 
+{% endblock %}
 </body>
 </html>
