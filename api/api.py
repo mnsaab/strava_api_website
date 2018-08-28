@@ -39,5 +39,31 @@ def createApi():
 		vals = request.get_json()
 		print(vals['username'])
 
+		username = vals['username']
+		firstname = vals['firstname']
+		lastname = vals['lastname']
+		password = vals['password']
+
+		cur = db.cursor()
+
+		# I need to add a hashing algorithm to secure the passwords in the databases 
+
+		query = "SELECT username FROM accounts WHERE username=\"" + username + "\""
+		cur.execute(query)
+		dbData = cur.fetchone()
+
+		if (dbData != None):
+			return jsonify("This username already in use, please try something else"), 403
+
+		query = "SELECT password FROM accounts WHERE password=\"" + password + "\""
+		cur.execute(query)
+		dbData = cur.fetchone()
+
+		if (dbData != None):
+			return jsonify("This password is already in use, please try something else"), 403
+
+		query = "INSERT INTO accounts (username, password, firstname, lastname) VALUES (\"" + username + "\", \"" + password + "\", \"" + firstname + "\", \"" + lastname + "\")"   
+		cur.execute(query)
+
 		confirm = "created account for " + vals['firstname'] + " " + vals['lastname']
 		return jsonify(confirm), 203

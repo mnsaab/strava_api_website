@@ -20,20 +20,20 @@
 
 				if (fname == '' || lname == '' || uname == '' || pass1 == '' || pass2 == ''){
 					error = true;
-					errors.push('All fields must be filled out to create an account')
+					errors.push('*All fields must be filled out to create an account*')
 				}//blank entries error 
 
 
 				if (pass1 != pass2){
 					error = true;
-					errors.push('The passwords do not match. Please re-enter them')
+					errors.push('*The passwords do not match. Please re-enter them*')
 				}//
 
 				if (error){
 					htstr = "";
 					var i = 0;
 					for (i; i < errors.length; ++i){
-						htstr += "<p>" + errors[i] + "</p>";
+						htstr += "<p style='color:red;'>" + errors[i] + "</p>";
 					}//for 
 
 					$("#errors").html(htstr);
@@ -57,7 +57,8 @@
 							// window.location.href = "{{url_for('api.homeApi')}}";
 						},
 						error: function(error){
-							console.log(error);
+							console.log(error.responseText);
+							//need to handle these error messages
 						}
 
 
