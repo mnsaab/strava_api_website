@@ -27,8 +27,40 @@ def loginApi():
 	if request.method == "GET":
 		return render_template("login.html")
 	else:
-		return("Login page goes here");
+		vals = request.get_json()
+		# print(vals['username'])
 
+		username = vals['username']
+		password = vals['password']
+
+		# For when the password is encrypted in the database, I need to do some encrypting and decrypting to match the passwords 
+
+		cur = db.cursor()
+		
+		query = "SELECT * FROM accounts WHERE username=\"" + username + "\""
+		cur.execute(query)
+		dbData = cur.fetchone()
+
+		if (dbData == None):
+			return jsonify("This username cannot be found, if you don't have an account, please make one. Otherwise, please try again"), 403
+
+		if (dbData['password'] != password):
+			return jsonify("This password does not match with the given username, please try again"), 403
+
+		session['username'] = username
+		# session['firstname'] = dbData['firstname']
+		# session['lastname'] = dbData['lastname']
+
+
+		return jsonify("Successfully logged in as " + session['username']), 203
+
+
+
+@app.route('/logout', methods=['GET'])
+def logoutApi():
+	session.pop('username', None)
+
+	return redirect(url_for("api.loginApi"))
 
 
 @app.route('/create-account', methods=['POST', 'GET'])
@@ -37,7 +69,7 @@ def createApi():
 		return render_template("createAccount.html")
 	else:
 		vals = request.get_json()
-		print(vals['username'])
+		# print(vals['username'])
 
 		username = vals['username']
 		firstname = vals['firstname']

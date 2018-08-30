@@ -9,6 +9,20 @@
 	<link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
 </head>
 
+<div id="jav">
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			
+			$("#callStrava").click(function(){
+				console.log("clickin!!")
+			});//on click 
+
+		}); //document.ready
+
+	</script>
+</div>
+
 
 <body>
 
@@ -17,13 +31,27 @@
 			<h1>Rides and Strides with Strava!</h1>
 		</div>
 	</div>
-{% block content %}
 
+	<div class="log-status" id="banner">
+	{% if 'username' not in session %}
+		<p>Not logged in. <br> <a href="{{url_for('api.loginApi')}}">Log in here</a></p>
+	{% endif %}		
+
+	{% if 'username' in session %}
+		<p>Logged in as {{session.username}}</p>
+		<a href="{{url_for('api.logoutApi')}}"><button class="pure-button" id="logout">Sign Out</button></a>
+	{% endif %}
+	</div>
+
+
+{% block content %}
 
 	<div class="main-container">
 
 		<p>Click here to gather data from your Strava profile for the last 3 months!</p>
-		<button class="pure-button">Gather Strava Data</button>
+		<button class="pure-button" id="callStrava">Gather Strava Data</button>
+		<button class="pure-button pure-button-primary" id="saveData" style="display: none">Save Results</button>
+
 
 		<br><br>
 

@@ -53,11 +53,12 @@
 						data: JSON.stringify(userdata),
 						url: "{{url_for('api.createApi')}}",
 						success: function(data){
-							console.log(data)
-							// window.location.href = "{{url_for('api.homeApi')}}";
+							// console.log(data)
+							window.location.href = "{{url_for('api.loginApi')}}";
 						},
 						error: function(error){
-							console.log(error.responseText);
+							$("#errors").html("<p style='color:red;'>" + "\*" + error.responseText.slice(1, -2) + "\*" + "</p>");
+							// console.log(error.responseText);
 							//need to handle these error messages
 						}
 

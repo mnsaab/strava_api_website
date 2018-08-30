@@ -4,3 +4,19 @@ body {
 	padding: 0px;
 	background: #E0FFFF;
 }
+
+#banner {
+	position: fixed;
+	right: 10px;
+	top: 10px;
+	color: aqua;
+	border: solid;
+	padding: 8px;
+	z-index: 100;
+	background-color: white; 
+
+}
+
+#banner a {
+	color: blue;
+}
