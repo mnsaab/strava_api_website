@@ -9,24 +9,6 @@
 	<link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
 </head>
 
-{% block content %}
-
-<div id="jav">
-	<script type="text/javascript">
-
-		$(document).ready(function() {
-			
-			$("#callStrava").click(function(){
-				console.log("clickin!!")
-			});//on click 
-
-		}); //document.ready
-
-	</script>
-</div>
-
-{% endblock %}
-
 <body>
 
 	<div class="header">
@@ -38,7 +20,7 @@
 	<div class="log-status" id="banner">
 	{% if 'username' not in session %}
 		<p>Not logged in. <br> <a href="{{url_for('api.loginApi')}}">Log in here</a></p>
-	{% endif %}		
+	{% endif %}
 
 	{% if 'username' in session %}
 		<p>Logged in as {{session.username}}</p>
@@ -48,6 +30,30 @@
 
 
 {% block content %}
+
+	
+	<div id="jav">
+		<script type="text/javascript">
+
+			$(document).ready(function() {
+
+				var token = "f052e2cee011bab715a9b92d2f9b44fbabd7538a";
+
+				$.get("https://www.strava.com/api/v3/athlete?access_token=f052e2cee011bab715a9b92d2f9b44fbabd7538a", function(data, status){
+					var result = JSON.stringify(data) 
+					console.log(result);
+				});//.get
+				console.log("After return");
+
+				
+				$("#callStrava").click(function(){
+					console.log("clickin!!");
+				});//on click 
+
+			}); //document.ready
+
+		</script>
+	</div>
 
 	<div class="main-container">
 
