@@ -44,7 +44,7 @@
 						url: "{{url_for('api.loginApi')}}",
 						success: function(data){
 							// console.log(data)
-							window.location.href = "{{url_for('api.homeApi')}}";
+							window.location.href = "{{url_for('home.home_route')}}";
 						},
 						error: function(error){
 							// console.log(error.responseText);
@@ -91,7 +91,7 @@
 
 <div class="head-to-create">
 	
-	<p>Don't have an account? Make one <a href="{{url_for('api.createApi')}}"><button class="button-warning pure-button" style="background: #fc4c02;">here.</button></a></p>
+	<p>Don't have an account? Make one <a href="{{url_for('home.create_route')}}"><button class="button-warning pure-button" style="background: #fc4c02;">here.</button></a></p>
 
 </div>
 

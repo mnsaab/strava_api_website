@@ -54,7 +54,7 @@
 						url: "{{url_for('api.createApi')}}",
 						success: function(data){
 							// console.log(data)
-							window.location.href = "{{url_for('api.loginApi')}}";
+							window.location.href = "{{url_for('home.login_route')}}";
 						},
 						error: function(error){
 							$("#errors").html("<p style='color:red;'>" + "\*" + error.responseText.slice(1, -2) + "\*" + "</p>");

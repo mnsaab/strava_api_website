@@ -19,7 +19,7 @@
 
 	<div class="log-status" id="banner">
 	{% if 'username' not in session %}
-		<p>Not logged in. <br> <a href="{{url_for('api.loginApi')}}">Log in here</a></p>
+		<p>Not logged in. <br> <a href="{{url_for('home.login_route')}}">Log in here</a></p>
 	{% endif %}
 
 	{% if 'username' in session %}
